@@ -60,3 +60,7 @@ Future<bool> saveProduct(Product data) async {
 
   return false;
 }
+
+Future<bool> deleteProduct(Product item) async {
+  return true;
+}
