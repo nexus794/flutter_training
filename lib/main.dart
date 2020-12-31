@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retgoo_kick_off/pages/add_product_page.dart';
-import 'package:retgoo_kick_off/pages/products_page.dart';
-import 'package:retgoo_kick_off/pages/profile_page.dart';
-import 'package:retgoo_kick_off/pages/settings_page.dart';
-import 'package:retgoo_kick_off/pages_jadwal_sholat/jadwal_pekanbaru.dart';
+import 'package:provider/provider.dart';
+import 'package:retgoo_kick_off/pages/jadwal_sholat_page.dart';
+import 'package:retgoo_kick_off/providers/jadwal_sholat_provider.dart';
 
 import 'pages/home_page.dart';
 
@@ -14,21 +12,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          inputDecorationTheme: InputDecorationTheme(
-            border: OutlineInputBorder(),
-          )),
-      home: HomePage(),
-      routes: {
-        "/profile": (context) => ProfilePage(),
-        "/settings": (context) => SettingsPage(),
-        "/products": (context) => ProductsPage(),
-        "/add-product": (context) => AddProductPage(),
-        "/jadwal_sholat_pekanbaru": (context) => JadwalSholatPekanBaru(),
-      },
+    return ChangeNotifierProvider(
+      create: (context) => JadwalSholatProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primarySwatch: Colors.deepPurple,
+            inputDecorationTheme: InputDecorationTheme(
+              border: OutlineInputBorder(),
+            )),
+        routes: {
+          '/': (context) => HomePage(),
+          '/jadwal-shalat': (context) => JadwalSholatPage(),
+        },
+      ),
     );
   }
 }

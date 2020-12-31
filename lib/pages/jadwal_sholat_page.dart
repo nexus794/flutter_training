@@ -1,37 +1,22 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:retgoo_kick_off/api/jadwal_sholat.dart';
-import 'package:retgoo_kick_off/models/jadwal_sholat.dart';
+import 'package:provider/provider.dart';
+import 'package:retgoo_kick_off/providers/jadwal_sholat_provider.dart';
 
-class JadwalSholatPekanBaru extends StatefulWidget {
-  @override
-  _JadwalSholatPekanBaruState createState() => _JadwalSholatPekanBaruState();
-}
+class JadwalSholatPage extends StatelessWidget {
+  const JadwalSholatPage({Key key}) : super(key: key);
 
-class _JadwalSholatPekanBaruState extends State<JadwalSholatPekanBaru> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Jadwal Sholat Pekan Baru'),
+        title: Text('Jadwal Sholat'),
       ),
-      body: buildBody(),
-    );
-  }
+      body: Consumer<JadwalSholatProvider>(
+        builder: (context, provider, child) {
+          final tanggal = DateTime.now();
+          final jadwal = provider.jadwalHariIni;
 
-  buildBody() {
-    final tanggal = DateTime.now();
-    return FutureBuilder<Response>(
-      future: jadwalSholatApi.get(
-          'pekanbaru/${tanggal.year}/${tanggal.month}/${tanggal.day}.json'),
-      builder: (context, snapshot) {
-        //final subuh = (snapshot.data.data).toString();
-        var data = json.decode(snapshot.data.data);
-        var jadwal = Jadwal.fromJson(data);
-        return SingleChildScrollView(
-          child: Center(
+          return Center(
             child: Column(
               children: [
                 Container(
@@ -104,9 +89,9 @@ class _JadwalSholatPekanBaruState extends State<JadwalSholatPekanBaru> {
                 ),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
