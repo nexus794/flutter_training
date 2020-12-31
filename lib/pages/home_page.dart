@@ -118,6 +118,15 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pushNamed(context, "/products");
                   },
                 ),
+                RaisedButton(
+                  child: Text("Jadwal Sholat Pekan Baru"),
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      "/jadwal_sholat_pekanbaru",
+                    );
+                  },
+                ),
               ],
             ),
           ),

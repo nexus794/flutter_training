@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:retgoo_kick_off/pages/add_product_page.dart';
-import 'package:retgoo_kick_off/pages/home_page.dart';
 import 'package:retgoo_kick_off/pages/products_page.dart';
 import 'package:retgoo_kick_off/pages/profile_page.dart';
 import 'package:retgoo_kick_off/pages/settings_page.dart';
+import 'package:retgoo_kick_off/pages_jadwal_sholat/jadwal_pekanbaru.dart';
+
+import 'pages/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         "/settings": (context) => SettingsPage(),
         "/products": (context) => ProductsPage(),
         "/add-product": (context) => AddProductPage(),
+        "/jadwal_sholat_pekanbaru": (context) => JadwalSholatPekanBaru(),
       },
     );
   }
